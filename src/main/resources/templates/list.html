@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Signups</title>
+    </head>
+    <body>
+        <h1>These people have signed up this far</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Address</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="item : ${list}">
+                    <td th:text="${item.name}">name</td>
+                    <td th:text="${item.address}">address</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

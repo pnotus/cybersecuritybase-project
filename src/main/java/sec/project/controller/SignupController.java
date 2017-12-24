@@ -8,6 +8,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,7 +30,9 @@ public class SignupController {
     }
 
     @RequestMapping(value = "/form", method = RequestMethod.GET)
-    public String loadForm() {
+    public String loadForm(Authentication authentication, Model model) {
+        model.addAttribute("name", authentication == null ? "none" : authentication.getName());
+        model.addAttribute("isAuthenticated", authentication != null && authentication.isAuthenticated());
         return "form";
     }
 
@@ -38,6 +41,12 @@ public class SignupController {
         signupRepository.save(new Signup(name, address));
         model.addAttribute("name", name);
         return "done";
+    }
+    
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public String list(Model model) {
+        model.addAttribute("list", signupRepository.findAll());
+        return "list";
     }
     
     @RequestMapping(value = "/files/{fileName:.+}", method = RequestMethod.GET)
