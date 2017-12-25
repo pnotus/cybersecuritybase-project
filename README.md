@@ -9,6 +9,8 @@ Template for the first course project.
 4. Press the Submit button
 5. The javascript in the XSS attack is executed on the confirmation page and an alert message is shown
 
+### How to fix
+
 ## Issue 2: 2013-A4-Insecure Direct Object References
 ### Steps to reproduce:
 1. Go to http://localhost:8080
@@ -31,6 +33,8 @@ Template for the first course project.
 9. Change the URL in the browsers address field to http://localhost:8080/list (which we took note of earlier)
 10. The page is shown even though the logged in user is not an "admin"
 
+### How to fix
+
 ## Issue 4: 2013-A8-Cross-Site Request Forgery (CSRF)
 ### Steps to reproduce:
 1. Go to http://localhost:8080
@@ -40,6 +44,8 @@ Template for the first course project.
 5. The javascript in the XSS attack is executed on the confirmation page which triggers the CSRF
 6. Change the URL in the browsers address field to http://localhost:8080/list and verify that a user named CSRF with the address vulnerability is signed up
 
+### How to fix
+
 ## Issue 5: 2013-A1-SQL Injection
 ### Steps to reproduce:
 1. Go to http://localhost:8080
@@ -48,3 +54,5 @@ Template for the first course project.
 4. Enter the following in the input field: Roger%' OR address LIKE 'free
 5. Press the button labeled "Filter by name starting with"
 6. Notice that the SQL injection has filtered the response for both names beginning with "Roger" _and_ addresses beginning with "free"
+
+### How to fix
