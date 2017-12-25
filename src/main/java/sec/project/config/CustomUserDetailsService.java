@@ -4,10 +4,12 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.TreeMap;
 import javax.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,10 +17,16 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     private Map<String, String> accountDetails;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    
     @PostConstruct
     public void init() {
         // this data would typically be retrieved from a database
         this.accountDetails = new TreeMap<>();
+        this.accountDetails.put("admin", passwordEncoder.encode("admin"));
+        this.accountDetails.put("alice", passwordEncoder.encode("123456"));
+        this.accountDetails.put("bob", passwordEncoder.encode("letmein"));
         this.accountDetails.put("ted", "$2a$06$rtacOjuBuSlhnqMO2GKxW.Bs8J6KI0kYjw/gtF0bfErYgFyNTZRDm");
     }
 

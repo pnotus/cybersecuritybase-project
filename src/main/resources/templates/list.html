@@ -4,21 +4,19 @@
         <title>Signups</title>
     </head>
     <body>
-        <h1>These people have signed up this far</h1>
-
-        <table>
-            <thead>
-                <tr>
-                    <td>Name</td>
-                    <td>Address</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="item : ${list}">
-                    <td th:text="${item.name}">name</td>
-                    <td th:text="${item.address}">address</td>
-                </tr>
-            </tbody>
-        </table>
+        <h1>These people have signed up so far</h1>
+        <form th:action="@{/list}" method="POST">
+            <input type="text" name="name" />
+            <input type="submit" value="Filter by name starting with" />
+        </form>
+        <ol>
+            <li th:each="item: ${list}">
+                <form action="#" th:action="@{/delete}" method="POST">
+                    <strong th:text="${item.name}"></strong> (<span th:text="${item.address}"></span>)
+                    <input name="name" type="hidden" th:value="${item.name}" />
+                    <input type="submit" value="Delete" />
+                </form>
+            </li>
+        </ol>
     </body>
 </html>

@@ -1,6 +1,12 @@
 package sec.project.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.InputStreamResource;
@@ -24,6 +30,18 @@ public class SignupController {
     @Autowired
     private SignupRepository signupRepository;
 
+    @PersistenceContext
+    private EntityManager em;
+
+    @PostConstruct
+    public void init() {
+        // add some content to the signup repository
+        signupRepository.save(new Signup("Roger Rabbit", "roger.rabbit@toontown.com"));
+        signupRepository.save(new Signup("Kevin Mitnick", "free@kevin.com"));
+        signupRepository.save(new Signup("Baba Sonic", "baba@sonic.se"));
+        signupRepository.save(new Signup("Bada Bing", "baba@bong.net"));
+    }
+
     @RequestMapping("*")
     public String defaultMapping() {
         return "redirect:/form";
@@ -31,8 +49,8 @@ public class SignupController {
 
     @RequestMapping(value = "/form", method = RequestMethod.GET)
     public String loadForm(Authentication authentication, Model model) {
-        model.addAttribute("name", authentication == null ? "none" : authentication.getName());
-        model.addAttribute("isAuthenticated", authentication != null && authentication.isAuthenticated());
+        model.addAttribute("name", authentication.getName());
+        model.addAttribute("isAdmin", authentication.getName().equals("admin"));
         return "form";
     }
 
@@ -40,6 +58,7 @@ public class SignupController {
     public String submitForm(Model model, @RequestParam String name, @RequestParam String address) {
         signupRepository.save(new Signup(name, address));
         model.addAttribute("name", name);
+        model.addAttribute("address", address);
         return "done";
     }
     
@@ -49,6 +68,27 @@ public class SignupController {
         return "list";
     }
     
+    @RequestMapping(value = "/list", method = RequestMethod.POST)
+    public String filter(Model model, @RequestParam String name) throws SQLException {
+        List<Object[]> result = em.createQuery("SELECT name, address FROM Signup WHERE name LIKE '" + name + "%'").getResultList();
+
+        List<Signup> list = new ArrayList<Signup>();
+        for (Object[] item : result) {
+            list.add(new Signup((String)item[0], (String)item[1]));
+        }
+        
+        model.addAttribute("list", list);
+        return "list";
+    }
+    
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public String delete(@RequestParam String name) {
+        Signup signup = signupRepository.findByName(name);
+        signupRepository.delete(signup);
+
+        return "redirect:list";
+    }
+
     @RequestMapping(value = "/files/{fileName:.+}", method = RequestMethod.GET)
     public ResponseEntity<InputStreamResource> getFile(@PathVariable("fileName") String fileName) throws IOException {
         ClassPathResource file = new ClassPathResource(fileName);
