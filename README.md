@@ -40,3 +40,11 @@ Template for the first course project.
 5. The javascript in the xss attack is executed on the confirmation page which triggers the CSRF
 6. Change the url in the browsers address field to http://localhost:8080/list and verify that a user named CSRF with the address vulnerability is signed up
 
+## Issue 5: 2013-A1-SQL Injection
+### Steps to reproduce:
+1. Go to http://localhost:8080
+2. Login with User=admin and Password=admin
+3. Click the link in the text "Admin only, click here to list who has signed up" that is shown in the bottom of the page
+4. Enter the following in the input field: Roger%' OR address LIKE 'free
+5. Press the button labeled "Filter by name starting with"
+6. Notice that the SQL injection has filtered the response for both names beginning with "Roger" _and_ addresses beginning with "free"
