@@ -1,5 +1,6 @@
 package sec.project.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
@@ -7,6 +8,8 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 public class Signup extends AbstractPersistable<Long> {
 
     private String name;
+    
+    @Column(length = 1024)
     private String address;
 
     public Signup() {

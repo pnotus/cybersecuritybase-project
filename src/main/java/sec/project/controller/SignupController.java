@@ -39,7 +39,7 @@ public class SignupController {
         signupRepository.save(new Signup("Roger Rabbit", "roger.rabbit@toontown.com"));
         signupRepository.save(new Signup("Kevin Mitnick", "free@kevin.com"));
         signupRepository.save(new Signup("Baba Sonic", "baba@sonic.se"));
-        signupRepository.save(new Signup("Bada Bing", "baba@bong.net"));
+        signupRepository.save(new Signup("Bada Bing", "baba@boom.net"));
     }
 
     @RequestMapping("*")
