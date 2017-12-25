@@ -9,7 +9,7 @@ Template for the first course project.
 4. Press the Submit button
 5. The javascript in the XSS attack is executed on the confirmation page and an alert message is shown
 
-### How to fix
+### How to fix:
 
 ## Issue 2: 2013-A4-Insecure Direct Object References
 ### Steps to reproduce:
@@ -19,6 +19,8 @@ Template for the first course project.
 4. Notice that the URL in the browsers address field is http://localhost:8080/files/events.txt
 5. Change the URL in the browsers address field to http://localhost:8080/files/passwords.txt and press enter
 6. The secret password information is shown
+
+### How to fix:
 
 ## Issue 3: 2013-A7-Missing Function Level Access Control
 ### Steps to reproduce:
@@ -33,7 +35,7 @@ Template for the first course project.
 9. Change the URL in the browsers address field to http://localhost:8080/list (which we took note of earlier)
 10. The page is shown even though the logged in user is not an "admin"
 
-### How to fix
+### How to fix:
 
 ## Issue 4: 2013-A8-Cross-Site Request Forgery (CSRF)
 ### Steps to reproduce:
@@ -44,7 +46,7 @@ Template for the first course project.
 5. The javascript in the XSS attack is executed on the confirmation page which triggers the CSRF
 6. Change the URL in the browsers address field to http://localhost:8080/list and verify that a user named CSRF with the address vulnerability is signed up
 
-### How to fix
+### How to fix:
 
 ## Issue 5: 2013-A1-SQL Injection
 ### Steps to reproduce:
@@ -55,4 +57,4 @@ Template for the first course project.
 5. Press the button labeled "Filter by name starting with"
 6. Notice that the SQL injection has filtered the response for both names beginning with "Roger" _and_ addresses beginning with "free"
 
-### How to fix
+### How to fix:
