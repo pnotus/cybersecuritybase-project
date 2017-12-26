@@ -52,7 +52,7 @@ Applications do not always protect application functions properly. Sometimes, fu
 ### How to fix:
 Cross-Site Request Forgery (CSRF) is an attack that forces an end user to execute unwanted actions on a web application in which they're currently authenticated. CSRF attacks specifically target state-changing requests, not theft of data, since the attacker has no way to see the response to the forged request. To fix this specific problem one good solution would be to activate the CSRF protection that Spring has built in. This can be done by removing .disable() from http.csrf().disable() in the file /src/main/java/sec/project/config/SecurityConfiguration.java.
 
-## Issue 5: 2013-A1-SQL Injection
+## Issue 5: 2013-A1-Injection
 ### Steps to reproduce:
 1. Go to http://localhost:8080
 2. Login with User=admin and Password=admin
