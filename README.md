@@ -22,7 +22,7 @@ This vulnerability is an example of Reflected Server XSS. Server XSS is caused b
 6. The secret password information is shown
 
 ### How to fix:
-Applications frequently use the actual name or key of an object when generating web pages. Applications don’t always verify that the user is authorized for the target object. This results in an insecure direct object reference flaw. Each use of a direct object reference from an untrusted source must include an access control check to ensure the user is authorized for the requested object. To fix this specific problem one solution would be to check that the logged on user is an administrator before returning the file with passwords in the response. But perhaps the best solution would be to never implement a function that returns the content of arbitary files and especially not store sensitive password information in files that is accessible by the webserver.
+Applications frequently use the actual name or key of an object when generating web pages. Applications don’t always verify that the user is authorized for the target object. This results in an insecure direct object reference flaw. Each use of a direct object reference from an untrusted source must include an access control check to ensure the user is authorized for the requested object. To fix this specific problem one solution would be to check that the logged on user is an administrator before returning the file with passwords in the response. But perhaps the best solution would be to never implement a function that returns the content of arbitrary files and especially not store sensitive password information in files that is accessible by the web server.
 
 ## Issue 3: 2013-A7-Missing Function Level Access Control
 ### Steps to reproduce:
@@ -38,6 +38,7 @@ Applications frequently use the actual name or key of an object when generating 
 10. The page is shown even though the logged in user is not an "admin"
 
 ### How to fix:
+Applications do not always protect application functions properly. Sometimes, function level protection is managed via configuration, and the system is misconfigured. Sometimes, developers must include the proper code checks, and they forget. The application should have a consistent and easy to analyze authorization module that is invoked from all business functions. To fix this specific problem one good solution would be to introduce an ADMIN role and add .antMatchers("/list/**").hasRole("ADMIN") to http.authorizeRequests() in the file /src/main/java/sec/project/config/SecurityConfiguration.java.
 
 ## Issue 4: 2013-A8-Cross-Site Request Forgery (CSRF)
 ### Steps to reproduce:
