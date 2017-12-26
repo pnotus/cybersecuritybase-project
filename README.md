@@ -40,7 +40,7 @@ Applications frequently use the actual name or key of an object (in this case th
 7. Login with User=ted and Password=ted
 8. Notice that the text "Admin only, click here to list who have signed up" is _not_ shown at the bottom of the page when the user named "ted" is logged in
 9. Change the URL in the browsers address field to http://localhost:8080/list (which we took note of earlier) and press enter
-10. The page is shown even though the logged in user is not an "admin"
+10. The page is shown and its functionality is accessible even though the logged in user is not an "admin"
 
 ### How to fix:
 Applications do not always protect application functions properly. Sometimes, function level protection is managed via configuration, and the system is misconfigured. Sometimes, developers must include the proper code checks, and they forget. The application should have a consistent and easy to analyze authorization module that is invoked from all business functions. To fix this specific problem one good solution would be to introduce an ADMIN role and add `.antMatchers("/list/**").hasRole("ADMIN")` to `http.authorizeRequests()` in the file `/src/main/java/sec/project/config/SecurityConfiguration.java`.
