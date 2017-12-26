@@ -10,7 +10,7 @@ Template for the first course project.
 5. The javascript in the XSS attack is executed on the confirmation page and an alert message is shown
 
 ### How to fix:
-This vulnerability is an example of Reflected Server XSS. Server XSS is caused by including untrusted data in an HTML response. The easiest and strongest defense against Server XSS in most cases is context-sensitive server side output encoding. In this specific case a good solution would be to...
+This vulnerability is an example of Reflected Server XSS. Server XSS is caused by including untrusted data in an HTML response. The easiest and strongest defense against Server XSS is in most cases context-sensitive server side output encoding. To fix this specific problem a good solution would be to HTML-encode the address data in the file src/main/resources/templates/done.html by using th:text instead of th:utext.
 
 ## Issue 2: 2013-A4-Insecure Direct Object References
 ### Steps to reproduce:
