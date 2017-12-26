@@ -62,3 +62,4 @@ Cross-Site Request Forgery (CSRF) is an attack that forces an end user to execut
 6. Notice that the SQL injection has filtered the response for both names beginning with "Roger" _and_ addresses beginning with "free"
 
 ### How to fix:
+SQL Injection flaws are introduced when software developers create dynamic database queries that include user supplied input. To fix this specific problem one good solution would be to use named parameters instead of concatenating the SQL string. This can be done by writing the query as "SELECT name, address FROM Signup WHERE name LIKE :name" and then set the name-parameter with query.setParameter("name", name + "%").
