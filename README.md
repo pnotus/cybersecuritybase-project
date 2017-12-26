@@ -22,6 +22,7 @@ This vulnerability is an example of Reflected Server XSS. Server XSS is caused b
 6. The secret password information is shown
 
 ### How to fix:
+Applications frequently use the actual name or key of an object when generating web pages. Applications don’t always verify that the user is authorized for the target object. This results in an insecure direct object reference flaw. Each use of a direct object reference from an untrusted source must include an access control check to ensure the user is authorized for the requested object. To fix this specific problem one solution would be to check that the logged on user is an administrator before returning the file with passwords in the response. But perhaps the best solution would be to never implement a function that returns the content of arbitary files and especially not store sensitive password information in files that is accessible by the webserver.
 
 ## Issue 3: 2013-A7-Missing Function Level Access Control
 ### Steps to reproduce:
