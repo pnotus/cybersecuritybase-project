@@ -1,7 +1,9 @@
-# cybersecuritybase-project
-Template for the first course project.
+# Cyber Security Base - Course Project I
+This project is a part of the course [Cyber Security Base with F-Secure](https://cybersecuritybase.github.io/). It is a free course series by University of Helsinki in collaboration with F-Secure Cyber Security Academy that focuses on building core knowledge and abilities related to the work of a cyber security professional.
 
-## Issue 1: 2013-A3-Cross-Site Scripting (XSS)
+In this assignment the goal is to create a web application that has at least five different flaws from the [OWASP top ten list](https://www.owasp.org/index.php/Top_10_2013-Top_10), point out the flaws in the software, and provide the steps to fix them.
+
+## Flaw 1: 2013-A3-Cross-Site Scripting (XSS)
 ### Steps to reproduce:
 1. Go to http://localhost:8080
 2. Login with User=ted and Password=ted
@@ -12,7 +14,7 @@ Template for the first course project.
 ### How to fix:
 This vulnerability is an example of Reflected Server XSS. Server XSS is caused by including untrusted data in an HTML response. The easiest and strongest defense against Server XSS is in most cases context-sensitive server side output encoding. To fix this specific problem a good solution would be to HTML-encode the address data in the file src/main/resources/templates/done.html by using th:text instead of th:utext.
 
-## Issue 2: 2013-A4-Insecure Direct Object References
+## Flaw 2: 2013-A4-Insecure Direct Object References
 ### Steps to reproduce:
 1. Go to http://localhost:8080
 2. Login with User=ted and Password=ted
@@ -24,7 +26,7 @@ This vulnerability is an example of Reflected Server XSS. Server XSS is caused b
 ### How to fix:
 Applications frequently use the actual name or key of an object when generating web pages. Applications don’t always verify that the user is authorized for the target object. This results in an insecure direct object reference flaw. Each use of a direct object reference from an untrusted source must include an access control check to ensure the user is authorized for the requested object. To fix this specific problem one solution would be to check that the logged on user is an administrator before returning the file with passwords in the response. But perhaps the best solution would be to never implement a function that returns the content of arbitrary files and especially not store sensitive password information in files that is accessible by the web server.
 
-## Issue 3: 2013-A7-Missing Function Level Access Control
+## Flaw 3: 2013-A7-Missing Function Level Access Control
 ### Steps to reproduce:
 1. Go to http://localhost:8080
 2. Login with User=admin and Password=admin
@@ -40,7 +42,7 @@ Applications frequently use the actual name or key of an object when generating 
 ### How to fix:
 Applications do not always protect application functions properly. Sometimes, function level protection is managed via configuration, and the system is misconfigured. Sometimes, developers must include the proper code checks, and they forget. The application should have a consistent and easy to analyze authorization module that is invoked from all business functions. To fix this specific problem one good solution would be to introduce an ADMIN role and add .antMatchers("/list/**").hasRole("ADMIN") to http.authorizeRequests() in the file /src/main/java/sec/project/config/SecurityConfiguration.java.
 
-## Issue 4: 2013-A8-Cross-Site Request Forgery (CSRF)
+## Flaw 4: 2013-A8-Cross-Site Request Forgery (CSRF)
 ### Steps to reproduce:
 1. Go to http://localhost:8080
 2. Login with User=ted and Password=ted
@@ -52,7 +54,7 @@ Applications do not always protect application functions properly. Sometimes, fu
 ### How to fix:
 Cross-Site Request Forgery (CSRF) is an attack that forces an end user to execute unwanted actions on a web application in which they're currently authenticated. CSRF attacks specifically target state-changing requests, not theft of data, since the attacker has no way to see the response to the forged request. To fix this specific problem one good solution would be to activate the CSRF protection that Spring has built in. This can be done by removing .disable() from http.csrf().disable() in the file /src/main/java/sec/project/config/SecurityConfiguration.java.
 
-## Issue 5: 2013-A1-Injection
+## Flaw 5: 2013-A1-Injection
 ### Steps to reproduce:
 1. Go to http://localhost:8080
 2. Login with User=admin and Password=admin
