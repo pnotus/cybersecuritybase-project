@@ -39,7 +39,7 @@ Applications frequently use the actual name or key of an object (in this case th
 6. Press the Logout button at the top of the page
 7. Login with User=ted and Password=ted
 8. Notice that the text "Admin only, click here to list who have signed up" is _not_ shown at the bottom of the page when the user named "ted" is logged in
-9. Change the URL in the browsers address field to http://localhost:8080/list (which we took note of earlier)
+9. Change the URL in the browsers address field to http://localhost:8080/list (which we took note of earlier) and press enter
 10. The page is shown even though the logged in user is not an "admin"
 
 ### How to fix:
