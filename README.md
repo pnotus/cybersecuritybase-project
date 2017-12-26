@@ -4,7 +4,7 @@ This project is a part of the course [Cyber Security Base with F-Secure](https:/
 
 In this assignment, the goal is to create a web application that has at least five different flaws from the [OWASP top ten list](https://www.owasp.org/index.php/Top_10_2013-Top_10), point out the flaws in the software, and provide the steps to fix them.
 
-To create the right conditions, make sure to clear browser cookies and restart the web server before trying to reproduce the flaws. Otherwise, the prerequisites might not correct. In the following text, the assumption is that the site is running under http://localhost:8080.
+To create the right conditions, make sure to clear browser cookies and restart the web server before trying to reproduce the flaws. Otherwise, the prerequisites might not be correct. In the following text, the assumption is that the site is running under http://localhost:8080.
 
 ## Flaw 1: 2013-A3-Cross-Site Scripting (XSS)
 ### Steps to reproduce:
