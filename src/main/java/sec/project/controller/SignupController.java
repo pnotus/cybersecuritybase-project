@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.InputStreamResource;
@@ -70,7 +71,8 @@ public class SignupController {
     
     @RequestMapping(value = "/list", method = RequestMethod.POST)
     public String filter(Model model, @RequestParam String name) throws SQLException {
-        List<Object[]> result = em.createQuery("SELECT name, address FROM Signup WHERE name LIKE '" + name + "%'").getResultList();
+        Query query = em.createQuery("SELECT name, address FROM Signup WHERE name LIKE '" + name + "%'");
+        List<Object[]> result = query.getResultList();
 
         List<Signup> list = new ArrayList<Signup>();
         for (Object[] item : result) {
